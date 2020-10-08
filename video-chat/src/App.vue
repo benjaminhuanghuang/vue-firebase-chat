@@ -31,6 +31,6 @@ export default {
 </script>
 
 <style lang="scss">
-$primary: #dddd;
+// $primary: #dddd;
 @import 'node_modules/bootstrap/scss/bootstrap';
 </style>
