@@ -83,6 +83,43 @@ export default {
       passTwo: null,
       error: null
     }
+  },
+  methods: {
+    register: function() {
+      const info = {
+        email: this.email,
+        password: this.passTwo,
+        displayName: this.displayName
+      }
+
+      if (!this.error) {
+        Firebase.auth()
+          .createUserWithEmailAndPassword(info.email, info.password)
+          .then(
+            userCredential => {
+              return userCredential.user
+                .updateProfile({
+                  displayName: info.displayName
+                })
+                .then(() => {
+                  this.$router.replace('/')
+                })
+            },
+            error => {
+              this.error = error.message
+            }
+          )
+      }
+    }
+  },
+  watch: {
+    passTow: function() {
+      if (this.passOne !== '' && this.passTwo !== '' && this.passTwo !== this.passOne) {
+        this.error = 'password must match'
+      } else {
+        this.error = null
+      }
+    }
   }
 }
 </script>
