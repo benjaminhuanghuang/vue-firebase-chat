@@ -78,12 +78,17 @@
   </div>
 </template>
 <script>
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
 export default {
   name: 'Rooms',
   data: function() {
     return {
       roomName: null
     }
+  },
+  components: {
+    FontAwesomeIcon
   },
   methods: {
     handleAdd: function() {
