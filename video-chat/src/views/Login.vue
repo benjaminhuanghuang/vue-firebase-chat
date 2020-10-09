@@ -38,6 +38,10 @@
           </div>
         </div>
       </div>
+      <p class="text-center mt-2">
+        or
+        <router-link to="/register">register</router-link>
+      </p>
     </form>
   </div>
 </template>
@@ -46,30 +50,31 @@
 import Firebase from 'firebase'
 
 export default {
-  data : function(){
+  data: function() {
     return {
       email: null,
       password: null,
-      error: null,
+      error: null
     }
   },
   methods: {
-    login: function(){
+    login: function() {
       const info = {
         email: this.email,
         password: this.password
       }
 
-      Firebase.auth().signInWithEmailAndPassword(info.email, info.password)
-      .then(()=>{
-        this.$router.push('/')
-      },
-      error=>{
-        this.error = error.messsage
-      })
-
+      Firebase.auth()
+        .signInWithEmailAndPassword(info.email, info.password)
+        .then(
+          () => {
+            this.$router.push('/')
+          },
+          error => {
+            this.error = error.messsage
+          }
+        )
     }
   }
-
 }
 </script>
